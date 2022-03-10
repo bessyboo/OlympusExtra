@@ -1,6 +1,12 @@
 
 CodexMenuData =
 {
+	ApolloUpgrade =
+	{
+	  "ApolloWeaponTrait", "ApolloDashTrait", "ApolloRangedTrait", "ApolloSecondaryTrait", 
+	  "ApolloShoutTrait", "ApolloRetaliateTrait", "FountainDefenseTrait", "FountainCoinTrait",
+	  "ApolloBlindedTrait", "ApolloHealTrait", "MissChanceTrait",
+	},
 	ZeusUpgrade =
 	{
 	  "ZeusWeaponTrait", "ZeusRushTrait", "ZeusRangedTrait", "ZeusSecondaryTrait", "ZeusShoutTrait",
@@ -92,12 +98,14 @@ CodexMenuData =
 	},
 	Duos =
 	{
-		"LightningCloudTrait", "AutoRetaliateTrait", "AmmoBoltTrait", "ImpactBoltTrait", "ReboundingAthenaCastTrait", "JoltDurationTrait",
-		"ImprovedPomTrait", "RaritySuperBoost", "BlizzardOrbTrait",
-		"TriggerCurseTrait", "SlowProjectileTrait", "ArtemisReflectBuffTrait", "CurseSickTrait", "HeartsickCritDamageTrait",
-		"DionysusAphroditeStackIncreaseTrait", "AresHomingTrait", "IceStrikeArrayTrait", "HomingLaserTrait",
-		"RegeneratingCappedSuperTrait", "StatusImmunityTrait", "PoseidonAresProjectileTrait", "CastBackstabTrait", "NoLastStandRegenerationTrait",
-		"PoisonTickRateTrait", "StationaryRiftTrait", "SelfLaserTrait", "ArtemisBonusProjectileTrait", "PoisonCritVulnerabilityTrait",
+		"LightningCloudTrait", "AutoRetaliateTrait", "AmmoBoltTrait", "ImpactBoltTrait", 
+		"ReboundingAthenaCastTrait", "JoltDurationTrait", "ImprovedPomTrait", "RaritySuperBoost", 
+		"BlizzardOrbTrait", "TriggerCurseTrait", "SlowProjectileTrait", "ArtemisReflectBuffTrait", 
+		"CurseSickTrait", "HeartsickCritDamageTrait", "DionysusAphroditeStackIncreaseTrait", "AresHomingTrait", 
+		"IceStrikeArrayTrait", "HomingLaserTrait", "RegeneratingCappedSuperTrait", "StatusImmunityTrait", 
+		"PoseidonAresProjectileTrait", "CastBackstabTrait", "NoLastStandRegenerationTrait", "PoisonTickRateTrait", 
+		"StationaryRiftTrait", "SelfLaserTrait", "ArtemisBonusProjectileTrait", "PoisonCritVulnerabilityTrait",
+		"FamedDuetTrait", "BlindDurationTrait"
 	},
 	Consumables =
 	{
@@ -151,6 +159,7 @@ if ModUtil ~= nil and PQOL == nil then
     ModUtil.WrapBaseFunction( "SetupMap", function(baseFunc)
         DebugPrint({Text = "@"..mod.." Loading all god packages!"})
         LoadPackages({Names = {
+            "ApolloUpgrade",
             "ZeusUpgrade",
             "PoseidonUpgrade",
             "AthenaUpgrade",
@@ -1379,6 +1388,7 @@ local WeaponTable = CodexOrdering.Weapons.Order
 local BoonTable =
 {
 	"TrialUpgrade",
+	"ApolloUpgrade",
 	"ZeusUpgrade",
 	"PoseidonUpgrade",
 	"AthenaUpgrade",
@@ -1522,12 +1532,7 @@ function CodexMain(triggerArgs)
 
 	local selection = CodexStatus.SelectedEntryNames[CodexStatus.SelectedChapterName]
 
-	if selection == "ApolloUpgrade" then
-			
-		CloseCodexScreen()
-		SpawnBoon(nil, {God = "ApolloUpgrade" })
-
-	elseif Contains(BoonTable, selection) then
+	if Contains(BoonTable, selection) then
 		DebugPrint({Text = "@CodexMenu Trying to open boon : "..selection})
 		OpenBoonSelector(selection, true)
 
