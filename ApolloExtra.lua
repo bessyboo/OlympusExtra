@@ -37,6 +37,42 @@ OlympusEnemyUpgradeData.ApolloUpgrade =
 	Hidden = true,
 	PropertyChanges = { },
 }
+--QuestData
+local OlympusQuestData = ModUtil.Entangled.ModData(QuestData)
+OlympusQuestData.ApolloUpgrades =
+{
+	InheritFrom = { "DefaultQuestItem" },
+	RewardResourceName = "Gems",
+	RewardResourceAmount = 150,
+	UnlockGameStateRequirements =
+	{
+		RequiredTextLines = { "ApolloGift01", },
+	},
+	CompleteGameStateRequirements =
+	{
+		RequiredTraitsTaken =
+		{
+			"ApolloWeaponTrait",
+			"ApolloDashTrait",
+			"ApolloRangedTrait",
+			"ApolloSecondaryTrait",
+			"ApolloShoutTrait",
+			
+			"FountainDefenseTrait",
+			"ApolloBlindedTrait",
+			"ApolloRetaliateTrait",
+			"FountainCoinTrait",			
+			"ApolloHealTrait",
+
+			"RerollBoonTrait",
+			"RerollObolTrait",
+			"MissChanceTrait",
+		},
+	},
+}
+local OlympusQuestOrderData = ModUtil.Entangled.ModData(QuestOrderData)
+table.insert(OlympusQuestOrderData, 29, "ApolloUpgrades")
+
 --UnitSetData
 local OlympusEnemyData = ModUtil.Entangled.ModData(EnemyData)
 OlympusEnemyData.ApolloUpgradeRoomWeapon = {
