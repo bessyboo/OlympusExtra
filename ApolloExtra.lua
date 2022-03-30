@@ -1494,14 +1494,12 @@ OlympusTraitData.FountainDefenseTrait =
       {
         Key = "FountainDefenseBonus",
         ExtractAs = "TooltipFountainBonus",
-        Format = "PercentDelta",
-        DecimalPlaces = 1,
+        Format = "NegativePercentDelta"
       },
       {
         Key = "AccumulatedFountainDefenseBonus",
         ExtractAs = "TooltipAccumulatedBonus",
-        Format = "PercentDelta",
-        DecimalPlaces = 1,
+        Format = "NegativePercentDelta"
       },
     },
 }
@@ -3578,7 +3576,7 @@ ModUtil.WrapBaseFunction( "CheckOnHitPowers",
 			PlaySound({ Name = "/VO/ZagreusEmotes/EmoteDodgingAlt", Id = CurrentRun.Hero.ObjectId, Delay = 0.2 })
 			if not HeroHasTrait("BlindDurationTrait") then
 				ClearEffect({ Id = attacker.ObjectId, Name = "ApolloBlind" })
-				BlockEffect({ Id = triggerArgs.TriggeredByTable.ObjectId, Name = "ApolloBlind", Duration = 3.0 })
+				BlockEffect({ Id = attacker.ObjectId, Name = "ApolloBlind", Duration = 3.0 })
 			end
 			args.DamageAmount = nil
 			args.AttackerWeaponData = nil		
@@ -3676,7 +3674,7 @@ OnUsed{ "HealthFountain HealthFountainAsphodel HealthFountainElysium HealthFount
 				ExtractValues( CurrentRun.Hero, traitData, traitData )
 			end
 			if traitData.FountainCoinBonus then
-				-- For notes,check MoneyPerRoom and SisyphusMoney
+				-- For notes, check MoneyPerRoom and SisyphusMoney
 				hasCoinBonus = true
 			end 
 		end
